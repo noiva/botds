@@ -45,14 +45,10 @@ module.exports = {
 				})
 				if (client.config.owner.includes(message.author.id) || db.get(`ownermd_${client.user.id}_${message.author.id}`) === true || perm) {
 					let channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel
-
-
-					message.guild.roles.cache.forEach(role => {
 						channel.createOverwrite(roleMembre, {
 							SEND_MESSAGES: true,
 							SPEAK: true,
 						});
-					}, `Salon fermé par ${message.author.tag}`);
 
 					message.channel.send(`Les membres peuvent parler dans <#${channel.id}>`);
 
