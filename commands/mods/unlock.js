@@ -46,11 +46,15 @@ module.exports = {
 				})
 				if (client.config.owner.includes(message.author.id) || db.get(`ownermd_${client.user.id}_${message.author.id}`) === true || perm) {
 					let channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel
-						channel.createOverwrite(roleMembre, {
-							SEND_MESSAGES: true,
-							SPEAK: true,
-							VIEW_CHANNEL: true
-						});
+						 const permissions = channel.permissionOverwrites.cache.get(roleMembre.id);
+
+   						 channel.permissionOverwrites.edit(roleMembre, {
+      						 	SEND_MESSAGES: true, 
+        						ADD_REACTIONS: true, 
+    						}).catch(console.error);
+						} else {
+   							message.channel.send("Le rôle spécifié est introuvable.");
+						}
 
 					message.channel.send(`Les membres peuvent parler dans <#${channel.id}>`);
 
