@@ -7,14 +7,16 @@ const {
 	MessageMenu
 } = require('discord-buttons');
 
-const roleId = "1345176771032780953"; 
-const roleMembre = message.guild.roles.cache.get(roleId);
+
 
 module.exports = {
 	name: 'unlock',
 	aliases: [],
 	run: async (client, message, args, prefix, color) => {
 
+		const roleId = "1345176771032780953"; 
+		const roleMembre = message.guild.roles.cache.get(roleId);
+		
 		try {
 			if (args[0] === "all") {
 				let perm = ""
