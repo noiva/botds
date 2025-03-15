@@ -28,7 +28,8 @@ module.exports = {
 						channel.updateOverwrite(roleMembre, {
 							SEND_MESSAGES: false,
 							SPEAK: false,
-							ADD_REACTIONS: false
+							ADD_REACTIONS: false,
+							VIEW_CHANNEL: true
 						})
 					}, `Tous les salons fermés par ${message.author.tag}`);
 
@@ -50,7 +51,8 @@ module.exports = {
 					try {
 						channel.createOverwrite(roleMembre, {
 							SEND_MESSAGES: false,
-							ADD_REACTIONS: false
+							ADD_REACTIONS: false,
+							VIEW_CHANNEL: true
 						});
 					} catch (e) {
 						;
