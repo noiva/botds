@@ -25,12 +25,13 @@ module.exports = {
 				})
 				if (client.config.owner.includes(message.author.id) || db.get(`ownermd_${client.user.id}_${message.author.id}`) === true || perm) {
 					message.guild.channels.cache.forEach((channel, id) => {
-						channel.updateOverwrite(roleMembre, {
-							SEND_MESSAGES: false,
-							SPEAK: false,
-							ADD_REACTIONS: false,
-							VIEW_CHANNEL: true
-						})
+						const permissions = channel.permissionOverwrites.cache.get(roleMembre.id);
+
+   						 channel.permissionOverwrites.edit(roleMembre, {
+      						 	SEND_MESSAGES: false, 
+        						ADD_REACTIONS: false,
+							SPEAK: false
+    						}).catch(console.error);
 					}, `Tous les salons fermés par ${message.author.tag}`);
 
 
