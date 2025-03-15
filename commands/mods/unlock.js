@@ -52,9 +52,6 @@ module.exports = {
       						 	SEND_MESSAGES: true, 
         						ADD_REACTIONS: true, 
     						}).catch(console.error);
-						} else {
-   							message.channel.send("Le rôle spécifié est introuvable.");
-						}
 
 					message.channel.send(`Les membres peuvent parler dans <#${channel.id}>`);
 
