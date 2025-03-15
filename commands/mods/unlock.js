@@ -7,6 +7,9 @@ const {
 	MessageMenu
 } = require('discord-buttons');
 
+const roleId = "1345176771032780953"; 
+const roleMembre = message.guild.roles.cache.get(roleId);
+
 module.exports = {
 	name: 'unlock',
 	aliases: [],
@@ -20,7 +23,7 @@ module.exports = {
 				})
 				if (client.config.owner.includes(message.author.id) || db.get(`ownermd_${client.user.id}_${message.author.id}`) === true || perm) {
 					message.guild.channels.cache.forEach((channel, id) => {
-						channel.updateOverwrite(message.guild.roles.everyone, {
+						channel.updateOverwrite(roleMembre, {
 							SEND_MESSAGES: true,
 							SPEAK: true,
 						})
@@ -43,7 +46,7 @@ module.exports = {
 
 
 					message.guild.roles.cache.forEach(role => {
-						channel.createOverwrite(message.guild.roles.everyone, {
+						channel.createOverwrite(roleMembre, {
 							SEND_MESSAGES: true,
 							SPEAK: true,
 						});
