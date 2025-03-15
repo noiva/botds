@@ -48,12 +48,10 @@ module.exports = {
 					let channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel
 
 					try {
-						message.guild.roles.cache.forEach(role => {
-							channel.createOverwrite(roleMembre, {
-								SEND_MESSAGES: false,
-								ADD_REACTIONS: false
-							});
-						}, `Salon fermé par ${message.author.tag}`);
+						channel.createOverwrite(roleMembre, {
+							SEND_MESSAGES: false,
+							ADD_REACTIONS: false
+						});
 					} catch (e) {
 						;
 					}
