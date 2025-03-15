@@ -28,6 +28,7 @@ module.exports = {
 						channel.updateOverwrite(roleMembre, {
 							SEND_MESSAGES: true,
 							SPEAK: true,
+							VIEW_CHANNEL: true
 						})
 					}, `Tout les salon fermé par ${message.author.tag}`);
 
@@ -48,6 +49,7 @@ module.exports = {
 						channel.createOverwrite(roleMembre, {
 							SEND_MESSAGES: true,
 							SPEAK: true,
+							VIEW_CHANNEL: true
 						});
 
 					message.channel.send(`Les membres peuvent parler dans <#${channel.id}>`);
