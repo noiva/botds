@@ -48,15 +48,13 @@ module.exports = {
 				if (client.config.owner.includes(message.author.id) || db.get(`ownermd_${client.user.id}_${message.author.id}`) === true || perm) {
 					let channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel
 
-					try {
-						channel.createOverwrite(roleMembre, {
-							SEND_MESSAGES: false,
-							ADD_REACTIONS: false,
-							VIEW_CHANNEL: true
-						});
-					} catch (e) {
-						;
-					}
+					 const permissions = channel.permissionOverwrites.cache.get(roleMembre.id);
+
+    					channel.permissionOverwrites.edit(roleMembre, {
+        					SEND_MESSAGES: false, // Bloquer l'envoi de messages
+        					ADD_REACTIONS: false, // Bloquer l'ajout de réactions
+    					}).catch(console.error);
+					
 					message.channel.send(`Les membres ne peuvent plus parler dans <#${channel.id}>`);
 
 				}
